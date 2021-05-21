@@ -13,6 +13,5 @@ public class ErrorMessage {
 	
 	String message;
 	LocalDateTime localDateTime;
-	String description;
 	
 }

@@ -17,6 +17,6 @@ public interface HotelInfoRepository extends MongoRepository<HotelInfo, Integer>
 	
 	public List<HotelInfo> findByServiceArea(String area);
 	
-	@Query
+	@Query("{serviceArea : ?0, menuType : ?1}")
 	public List<HotelInfo> findByServiceAreaAndMenuType(String area, String menuType);
 }

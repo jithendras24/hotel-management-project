@@ -39,4 +39,8 @@ public class HotelInfoService {
 	public List<HotelInfo> findByServiceArea(String area) {
 		return repo.findByServiceArea(area);
 	}
+	
+	public List<HotelInfo> findByServiceAreaAndMenuType(String area, String menuType) {
+		return repo.findByServiceAreaAndMenuType(area, menuType);
+	}
 }

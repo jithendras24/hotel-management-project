@@ -1,17 +1,10 @@
 package com.example.demo;
 
-import java.time.LocalDateTime;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.reactive.function.client.WebClient;
-
-import com.example.demo.entity.Reservation;
-import com.example.demo.repos.ReservationRepository;
 
 @SpringBootApplication
 public class HotelReservationServiceApplication {

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
 @RestControllerAdvice
-public class ReservationExceptionHandler {
+public class ReviewExceptionHandler {
 	
 	@ExceptionHandler(value = DuplicateKeyException.class)
 	public ErrorMessage dupIdEx(DuplicateKeyException e) {

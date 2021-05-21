@@ -6,10 +6,9 @@ import java.util.NoSuchElementException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.context.request.WebRequest;
 
 @RestControllerAdvice
-public class ReservationExceptionHandler {
+public class HotelExceptionHandler {
 	
 	@ExceptionHandler(value = DuplicateKeyException.class)
 	public ErrorMessage dupIdEx(DuplicateKeyException e) {
@@ -17,7 +16,7 @@ public class ReservationExceptionHandler {
 	}
 	
 	@ExceptionHandler(value = NoSuchElementException.class)
-	public ErrorMessage noElementEx(NoSuchElementException e, WebRequest request) {
+	public ErrorMessage noElementEx(NoSuchElementException e) {
 		return new ErrorMessage(e.getMessage(), LocalDateTime.now());
 	}
 	

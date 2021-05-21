@@ -24,7 +24,7 @@ public class HotelInfoController {
 	private HotelInfoService service;
 	
 	//add new hotel
-	@PostMapping
+	@PostMapping("/addHotel")
 	public HotelInfo addHotel(@RequestBody HotelInfo hotel) {
 		if(service.findById(hotel.getId()).isPresent()) {
 			throw new DuplicateKeyException("Hotel with id: " +hotel.getId()+ " already found");
@@ -40,7 +40,7 @@ public class HotelInfoController {
 		System.out.println(info.isPresent());
 		
 		if(info.isEmpty()) {
-			throw new NoSuchElementException("No hotel not found with id: " + id);
+			throw new NoSuchElementException("hotel not found with id: " + id);
 		}
 		
 		return info.get();
@@ -89,6 +89,15 @@ public class HotelInfoController {
 	}
 	
 	//find by service area and menu type
-	
+	@GetMapping("/{area}/{menu}")
+	public List<HotelInfo> findByServiceAreaAndMenuType(@PathVariable("area") String area, @PathVariable("menu") String menuType) {
+		List<HotelInfo> hotels = service.findByServiceAreaAndMenuType(area, menuType);
+
+		if(hotels == null) {
+			throw new NoSuchElementException("Nothing found");
+		}
+
+		return hotels;
+	}
 	
 }

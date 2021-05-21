@@ -33,7 +33,9 @@ public class ReservationController {
 	@PostMapping(path = "/bookHotel")
 	public Reservation bookHotel(@RequestBody Reservation resvDetails) {
 		
-		client.get().uri("http://HOTEL-INFO-SERVICE/hotelInfo/id/" +resvDetails.getHotelId());
+		String hotelUri = "http://HOTEL-INFO-SERVICE/hotelInfo/id/" + resvDetails.getHotelId();
+		System.out.println(hotelUri);
+		client.get().uri(hotelUri);
 		
 		if(service.findById(resvDetails.getId()).isPresent()) {
 			throw new DuplicateKeyException("Reservation Id already found");
