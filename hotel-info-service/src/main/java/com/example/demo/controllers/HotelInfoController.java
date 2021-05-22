@@ -6,18 +6,18 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.HotelInfo;
 import com.example.demo.service.HotelInfoService;
 
 @RestController
-@RequestMapping("/hotelInfo")
+@CrossOrigin(origins = "*")
 public class HotelInfoController {
 
 	@Autowired
@@ -53,12 +53,12 @@ public class HotelInfoController {
 	}
 	
 	//find by hotel name
-	@GetMapping("/name/{hotelName}")
-	public HotelInfo findByName(@PathVariable("hotelName") String hotelName) throws Exception {
+	@GetMapping("/hotel/{hotelName}")
+	public HotelInfo findByName(@PathVariable("hotelName") String hotelName) throws NoSuchElementException {
 		HotelInfo hotel = service.findByName(hotelName);
 		
 		if(hotel == null) {
-			throw new Exception("Hotel - " +hotelName+ " not found");
+			throw new NoSuchElementException("Hotel - " +hotelName+ " not found");
 		}
 
 		return hotel;

@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @SpringBootApplication
-public class HotelReservationServiceApplication {
+public class HotelClientServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HotelReservationServiceApplication.class, args);
+		SpringApplication.run(HotelClientServiceApplication.class, args);
 	}
 	
 	@Bean

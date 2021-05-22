@@ -1,0 +1,6 @@
+server:
+  port: 4040
+  
+spring:  config:    import: configserver:http://localhost:8888
+    
+  application:    name: hotel-client-service
