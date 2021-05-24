@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,10 +15,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import com.example.demo.entity.HotelInfoDTO;
 import com.example.demo.entity.Reservation;
 import com.example.demo.service.ReservationService;
 
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Scheduler;
+import reactor.core.scheduler.Schedulers;
 
 @RestController
 @RefreshScope
@@ -35,9 +39,10 @@ public class ReservationController {
 		
 		String hotelUri = "http://HOTEL-INFO-SERVICE/id/" + resvDetails.getHotelId();
 		
-		Mono<String> returnVal = client.get().uri(hotelUri).retrieve().bodyToMono(String.class);
-		
-		returnVal.subscribe(System.out::println);
+		// add block method
+		client.get().uri(hotelUri).retrieve()
+				.onStatus(HttpStatus::is5xxServerError, resp -> Mono.error(new RuntimeException()))
+				.bodyToMono(HotelInfoDTO.class).subscribeOn(Schedulers.boundedElastic());
 		
 		if(service.findById(resvDetails.getId()).isPresent()) {
 			throw new DuplicateKeyException("Reservation Id already found");
