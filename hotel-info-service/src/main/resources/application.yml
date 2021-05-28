@@ -2,4 +2,4 @@ server:  port: 8081
 
 spring:
   config:
-    import: configserver:http://localhost:8888  application:    name: hotel-info-service
+    import: configserver:http://localhost:8888  application:    name: hotel-info-service

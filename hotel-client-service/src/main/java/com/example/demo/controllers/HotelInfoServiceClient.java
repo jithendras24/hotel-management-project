@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -15,14 +14,13 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/hotel")
 @CrossOrigin(origins = "*")
 public class HotelInfoServiceClient {
 	
 	@Autowired
 	private WebClient client;
 	
-	public static final String HOTELURI = "lb://HOTEL-INFO-SERVICE";
+	public static final String HOTELURI = "lb://HOTEL-INFO-SERVICE/hotel";
 	
 	@PostMapping("/addHotel")
 	public Mono<String> addHotel(@RequestBody String entity) {
