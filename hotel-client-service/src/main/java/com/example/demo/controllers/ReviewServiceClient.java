@@ -35,7 +35,7 @@ public class ReviewServiceClient {
 		return client.get().uri(REVIEWURI + "/reviews").retrieve().bodyToFlux(String.class);
 	}
 	
-	@GetMapping("id/{id}")
+	@GetMapping("review/id/{id}")
 	public Mono<String> findById(@PathVariable("id") int id) {
 		return client.get().uri(REVIEWURI + "/id/" +id).retrieve().bodyToMono(String.class);
 	}

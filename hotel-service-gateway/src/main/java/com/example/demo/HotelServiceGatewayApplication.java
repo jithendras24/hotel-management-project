@@ -20,6 +20,7 @@ public class HotelServiceGatewayApplication {
 				.route(p -> p.path("/reservation/**").uri("lb://RESERVATION-SERVICE"))
 				.route(p -> p.path("/hotel/**").uri("lb://HOTEL-INFO-SERVICE"))
 				.route(p -> p.path("/review/**").uri("lb://REVIEW-SERVICE"))
+				.route(p -> p.path("/auth/**").uri("lb://AUTHENTICATION-SERVICE"))
 				.build();
 	}
 	

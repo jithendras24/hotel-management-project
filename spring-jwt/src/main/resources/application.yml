@@ -1,0 +1,6 @@
+jwt:
+  secret: "secret"
+  
+spring:  data:    mongodb:      port: 27017
+      host: localhost
+      database: test

@@ -3,12 +3,15 @@ server:
   
 spring:  application:    name: "hotel-service-gateway"
     
+  config:
+    import: configserver:http://localhost:8888    
+
 ############Comment this if discovery from eureka not needed############
 #  cloud:#    gateway:#      discovery:#        locator:#          enabled: true
 #          lower-case-service-id: true
 #      default-filters:#      - name: 
       #############################################
-    
+      
 eureka:  client:    fetch-registry: true
     register-with-eureka: true
   instance:    hostname: localhost

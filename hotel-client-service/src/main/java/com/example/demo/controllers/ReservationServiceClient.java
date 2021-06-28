@@ -28,7 +28,7 @@ public class ReservationServiceClient {
 							.bodyValue(entity).retrieve().bodyToMono(String.class);
 	}	
 	
-	@GetMapping("/id/{id}")
+	@GetMapping("hotel/id/{id}")
 	public Mono<String> findById(@PathVariable int id) {
 		return client.get().uri(RESVURI + "/id/" +id).retrieve().bodyToMono(String.class);
 	}
